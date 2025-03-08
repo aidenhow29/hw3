@@ -8,21 +8,24 @@
 
 void llpivot(Node *&head, Node *&smaller, Node *&larger, int pivot){
 
-    if(head == NULL){
+  Node* temp = head;
+  head = NULL;
+
+    if(temp == NULL){
         smaller = NULL;
         larger = NULL;
 
         return;
     }
 
-    if(head->val > pivot){
-        larger = head;
-        llpivot(head->next, smaller, larger->next, pivot);
+    if(temp->val > pivot){
+        larger = temp;
+        llpivot(temp->next, smaller, larger->next, pivot);
     }
 
-    if(head->val < pivot){
-        smaller = head;
-        llpivot(head->next, smaller->next, larger, pivot);
+    if(temp->val <= pivot){
+        smaller = temp;
+        llpivot(temp->next, smaller->next, larger, pivot);
     }
 
 
